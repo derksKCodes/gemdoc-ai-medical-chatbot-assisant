@@ -36,6 +36,20 @@ GemDoc acts as your trusted digital health assistant, offering personalized and 
 - **♿ Accessibility**: Built with accessibility standards in mind
 - **🌙 Dark/Light Mode**: Comfortable viewing in any environment
 
+---
+
+## 🛠️ Tech Stack
+
+| Layer         | Technology                |
+|---------------|----------------------------|
+| Frontend      | Flutter                    |
+| AI Backend    | Google Gemini API          |
+| Audio Input   | Flutter Sound / Speech SDK |
+| Image Support | Image Picker, Camera       |
+| File Handling | Flutter File Picker        |
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -91,6 +105,14 @@ Before you begin, ensure you have the following installed:
    ```bash
    flutter run
    ```
+   
+---
+
+## 📸 Screenshots
+
+> *Coming soon – app UI in action!*
+
+---
 
 ## 🏗️ Project Structure
 
@@ -203,33 +225,12 @@ I recommend consulting with a healthcare professional for proper evaluation."
 - Responses are based on general medical knowledge
 - Individual cases may vary significantly
 
-### Emergency Situations
-If you're experiencing a medical emergency, please:
-- Call your local emergency number (911, 112, etc.)
-- Visit the nearest emergency room
-- Contact your healthcare provider immediately
-
 ## 🔒 Privacy & Security
 
 - **Data Encryption**: All communications are encrypted
 - **No Data Storage**: Conversations are not permanently stored
 - **HIPAA Considerations**: Designed with healthcare privacy in mind
 - **Secure API**: All API calls use secure HTTPS connections
-
-## 🧪 Testing
-
-Run the test suite:
-
-```bash
-# Unit tests
-flutter test
-
-# Integration tests
-flutter test integration_test/
-
-# Widget tests
-flutter test test/widget_test.dart
-```
 
 ## 🚀 Deployment
 
