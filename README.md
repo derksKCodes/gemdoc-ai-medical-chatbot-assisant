@@ -299,7 +299,7 @@ For support and questions:
 - 📧 Email: support@medicalchatbot.com
 - 🐛 Issues: [GitHub Issues](https://github.com/derksKCodes/medical-chatbot-flutter/issues)
 * **Developer:** [@derksKCodes](https://github.com/derksKCodes)
-* **Project Link:** [https://github.com/derksKCodes/chefgem-ai-cooking-assistant.git](https://github.com/derksKCodes/chefgem-ai-cooking-assistant.git)
+* **Project Link:** [https://github.com/derksKCodes/chefgem-ai-cooking-assistant.git](https://github.com/derksKCodes/gemdoc-ai-medical-chatbot-assisant.git)
   
 ---
 
