@@ -1,5 +1,3 @@
-# 🏥 Medical Chatbot - AI-Powered Healthcare Assistant
-
 # 🩺 GemDoc – Your AI Health Expert Powered by Gemini
 
 **GemDoc** is a specialized **AI-powered medical chatbot** built with **Flutter** and integrated with **Google's Gemini API**. In today’s digital era, accessible and accurate health information is essential—and GemDoc aims to deliver exactly that through a reliable, intelligent, and user-friendly experience.
