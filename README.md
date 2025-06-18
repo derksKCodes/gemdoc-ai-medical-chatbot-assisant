@@ -146,6 +146,8 @@ lib/
     └── colors.dart
 ```
 
+---
+
 ## 🔧 Configuration
 
 ### Environment Variables
@@ -215,6 +217,8 @@ However, if your headache persists for more than 3 days or is severe,
 I recommend consulting with a healthcare professional for proper evaluation."
 ```
 
+---
+
 ## 🛡️ Medical Disclaimer
 
 **IMPORTANT**: This chatbot is designed for informational purposes only and should not replace professional medical advice, diagnosis, or treatment. Always consult with qualified healthcare professionals for medical concerns.
@@ -225,12 +229,16 @@ I recommend consulting with a healthcare professional for proper evaluation."
 - Responses are based on general medical knowledge
 - Individual cases may vary significantly
 
+---
+
 ## 🔒 Privacy & Security
 
 - **Data Encryption**: All communications are encrypted
 - **No Data Storage**: Conversations are not permanently stored
 - **HIPAA Considerations**: Designed with healthcare privacy in mind
 - **Secure API**: All API calls use secure HTTPS connections
+
+---
 
 ## 🚀 Deployment
 
@@ -245,6 +253,8 @@ flutter build appbundle --release
 ```bash
 flutter build ios --release
 ```
+
+---
 
 ## 🤝 Contributing
 
@@ -262,6 +272,8 @@ We welcome contributions! Please follow these steps:
 - Update documentation for new features
 - Ensure medical accuracy in health-related features
 
+---
+
 ## 📋 Roadmap
 
 - [ ] **Multi-language Support**: Support for additional languages
@@ -271,11 +283,15 @@ We welcome contributions! Please follow these steps:
 - [ ] **Medication Reminders**: Smart reminder system
 - [ ] **Symptom Tracker**: Visual symptom tracking over time
 
+---
+
 ## 🐛 Known Issues
 
 - Voice input may have accuracy issues in noisy environments
 - Large file uploads may take time depending on network speed
 - Camera functionality requires proper lighting for best results
+
+---
 
 ## 📞 Support
 
@@ -284,9 +300,13 @@ For support and questions:
 - 🐛 Issues: [GitHub Issues](https://github.com/yourusername/medical-chatbot-flutter/issues)
 - 📖 Documentation: [Wiki](https://github.com/yourusername/medical-chatbot-flutter/wiki)
 
+---
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
 
 ## 🙏 Acknowledgments
 
@@ -294,6 +314,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Flutter Team](https://flutter.dev/) for the amazing framework
 - Medical professionals who provided guidance on healthcare accuracy
 - Open source community for various packages and tools
+
+---
 
 ## 📊 Statistics
 
