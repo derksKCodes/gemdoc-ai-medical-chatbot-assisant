@@ -1,4 +1,4 @@
-# 🏥 Medical Chatbot - AI-Powered Healthcare Assistant
+🏥 Medical Chatbot - AI-Powered Healthcare Assistant
 
 A sophisticated medical chatbot built with Flutter and Google's Gemini API, designed to provide accessible and reliable health-related guidance through multiple input modalities.
 
