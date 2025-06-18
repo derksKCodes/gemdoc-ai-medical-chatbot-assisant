@@ -64,8 +64,8 @@ Before you begin, ensure you have the following installed:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/medical-chatbot-flutter.git
-   cd medical-chatbot-flutter
+   git clone https://github.com/derksKCodes/gemdoc-ai-medical-chatbot-assisant.git
+   cd gemdoc-ai-medical-chatbot-assisant
    ```
 
 2. **Install dependencies**
@@ -297,9 +297,10 @@ We welcome contributions! Please follow these steps:
 
 For support and questions:
 - 📧 Email: support@medicalchatbot.com
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/medical-chatbot-flutter/issues)
-- 📖 Documentation: [Wiki](https://github.com/yourusername/medical-chatbot-flutter/wiki)
-
+- 🐛 Issues: [GitHub Issues](https://github.com/derksKCodes/medical-chatbot-flutter/issues)
+* **Developer:** [@derksKCodes](https://github.com/derksKCodes)
+* **Project Link:** [https://github.com/derksKCodes/chefgem-ai-cooking-assistant.git](https://github.com/derksKCodes/chefgem-ai-cooking-assistant.git)
+  
 ---
 
 ## 📄 License
