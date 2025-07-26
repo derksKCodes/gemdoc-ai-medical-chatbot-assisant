@@ -117,33 +117,80 @@ Before you begin, ensure you have the following installed:
 ## 🏗️ Project Structure
 
 ```
-lib/
-├── main.dart                 # Application entry point
-├── models/                   # Data models
-│   ├── message.dart
-│   ├── chat_session.dart
-│   └── medical_response.dart
-├── services/                 # API and business logic
-│   ├── gemini_service.dart
-│   ├── speech_service.dart
-│   ├── image_service.dart
-│   └── file_service.dart
-├── screens/                  # UI screens
-│   ├── chat_screen.dart
-│   ├── home_screen.dart
-│   └── settings_screen.dart
-├── widgets/                  # Reusable UI components
-│   ├── chat_bubble.dart
-│   ├── input_field.dart
-│   ├── voice_recorder.dart
-│   └── image_picker.dart
-├── utils/                    # Utility functions
-│   ├── constants.dart
-│   ├── helpers.dart
-│   └── validators.dart
-└── theme/                    # App theming
-    ├── app_theme.dart
-    └── colors.dart
+gemdoc/
+├── android/                   # Android-specific files
+├── ios/                       # iOS-specific files
+├── lib/                       # Main application code
+│   ├── main.dart              # App entry point
+│   ├── core/
+│   │   ├── constants/
+│   │   │   ├── app_colors.dart
+│   │   │   ├── app_styles.dart
+│   │   │   └── app_strings.dart
+│   │   ├── services/
+│   │   │   ├── firebase_service.dart
+│   │   │   ├── gemini_service.dart
+│   │   │   └── notification_service.dart
+│   │   ├── utils/
+│   │   │   ├── helpers.dart
+│   │   │   └── validators.dart
+│   │   └── widgets/
+│   │       ├── custom_text_field.dart
+│   │       ├── health_tips_carousel.dart
+│   │       ├── loading_indicator.dart
+│   │       └── setting_tile.dart
+│   ├── features/
+│   │   ├── auth/
+│   │   │   ├── auth_screen.dart
+│   │   │   └── widgets/
+│   │   │       ├── login_form.dart
+│   │   │       └── register_form.dart
+│   │   ├── chat/
+│   │   │   ├── chat_screen.dart
+│   │   │   ├── widgets/
+│   │   │   │   ├── chat_bubble.dart
+│   │   │   │   └── message_input.dart
+│   │   │   └── models/
+│   │   │       └── chat_message.dart
+│   │   ├── profile/
+│   │   │   ├── profile_screen.dart
+│   │   │   └── widgets/
+│   │   │       └── profile_header.dart
+│   │   ├── symptom_checker/
+│   │   │   ├── symptom_checker_screen.dart
+│   │   │   └── widgets/
+│   │   │       └── symptom_chip.dart
+│   │   └── onboarding/
+│   │       ├── onboarding_screen.dart
+│   │       └── widgets/
+│   │           └── onboarding_page.dart
+│   ├── models/
+│   │   ├── user_model.dart
+│   │   └── symptom_model.dart
+│   └── state/
+│       ├── auth_provider.dart
+│       ├── chat_provider.dart
+│       ├── theme_provider.dart
+│       └── symptom_provider.dart
+├── test/                      # Test files
+│   ├── widget_test.dart
+│   └── mocks/
+│       └── mock_services.dart
+├── assets/
+│   ├── images/                # App images
+│   │   ├── logo.png
+│   │   ├── doctor.png
+│   │   ├── symptoms.png
+│   │   └── privacy.png
+│   ├── illustrations/         # Custom illustrations
+│   └── fonts/                 # Custom fonts
+├── web/                       # Web-specific files
+├── .env                       # Environment variables
+├── .gitignore
+├── pubspec.yaml               # Dependencies and assets
+├── README.md
+├── LICENSE
+└── firebase_options.dart      # Firebase configuration
 ```
 
 ---
@@ -231,15 +278,6 @@ I recommend consulting with a healthcare professional for proper evaluation."
 
 ---
 
-## 🔒 Privacy & Security
-
-- **Data Encryption**: All communications are encrypted
-- **No Data Storage**: Conversations are not permanently stored
-- **HIPAA Considerations**: Designed with healthcare privacy in mind
-- **Secure API**: All API calls use secure HTTPS connections
-
----
-
 ## 🚀 Deployment
 
 ### Android
@@ -253,24 +291,6 @@ flutter build appbundle --release
 ```bash
 flutter build ios --release
 ```
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Development Guidelines
-- Follow [Flutter style guide](https://dart.dev/guides/language/effective-dart/style)
-- Write comprehensive tests
-- Update documentation for new features
-- Ensure medical accuracy in health-related features
 
 ---
 
