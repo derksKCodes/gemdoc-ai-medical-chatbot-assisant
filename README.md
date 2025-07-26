@@ -78,7 +78,7 @@ Before you begin, ensure you have the following installed:
    - Create a new API key
    - Create a `.env` file in the root directory:
    ```env
-   GEMINI_API_KEY=your_api_key_here
+   GEMINI_API_KEY=api_key_here
    ```
 
 4. **Configure permissions**
@@ -203,13 +203,10 @@ Create a `.env` file in the root directory with the following variables:
 
 ```env
 # Google Gemini API
-GEMINI_API_KEY=your_gemini_api_key
-
-# Optional: Custom API endpoints
-CUSTOM_API_ENDPOINT=https://your-custom-endpoint.com
+GEMINI_API_KEY=gemini_api_key
 
 # App Configuration
-APP_NAME=Medical Chatbot
+APP_NAME=GemDoc - Medical Chatbot
 APP_VERSION=1.0.0
 ```
 
