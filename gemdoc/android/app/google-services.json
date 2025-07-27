@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "223244759279",
+    "project_id": "gemdoc-22afc",
+    "storage_bucket": "gemdoc-22afc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223244759279:android:b60e0e40b80bb80e69eb1a",
+        "android_client_info": {
+          "package_name": "com.example.gemdoc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5FHivNMjLpmsvj6PpiGc-zOEkDtwznmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
