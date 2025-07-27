@@ -1,6 +1,31 @@
+<p align="center>![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![Build](https://github.com/derksKCodes/gemdoc-ai-medical-chatbot-assisant/actions/workflows/flutter.yml/badge.svg)
+![Google AI](https://img.shields.io/badge/Google%20AI-4285F4?style=for-the-badge&logo=google&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
+</p>
+
 # 🩺 GemDoc – Your AI Health Expert Powered by Gemini
 
 **GemDoc** is a specialized **AI-powered medical chatbot** built with **Flutter** and integrated with **Google's Gemini API**. In today’s digital era, accessible and accurate health information is essential—and GemDoc aims to deliver exactly that through a reliable, intelligent, and user-friendly experience.
+
+---
+
+## 📑 Table of Contents
+- [Overview](#-overview)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Getting Started](#-getting-started)
+- [Screenshots](#-screenshots)
+- [Project Structure](#-project-structure)
+- [Configuration](#-configuration)
+- [Usage](#-usage)
+- [Medical Disclaimer](#-medical-disclaimer)
+- [Deployment](#-deployment)
+- [Roadmap](#-roadmap)
+- [Support](#-support)
+- [License](#-license)
+- [Acknowledgments](#-acknowledgments)
 
 ---
 
@@ -9,11 +34,6 @@
 GemDoc acts as your trusted digital health assistant, offering personalized and insightful health-related responses powered by advanced AI. Whether you're seeking information about symptoms, health tips, or medical conditions, **GemDoc provides consistent and reliable answers**—right at your fingertips.
 
 ---
-
-![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
-![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
-![Google AI](https://img.shields.io/badge/Google%20AI-4285F4?style=for-the-badge&logo=google&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 
 ## 🌟 Features
 
