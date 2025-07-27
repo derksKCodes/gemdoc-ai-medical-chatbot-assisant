@@ -1,10 +1,9 @@
-<align="center">
+
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
-![Build](https://github.com/derksKCodes/gemdoc-ai-medical-chatbot-assisant/actions/workflows/flutter.yml/badge.svg)
 ![Google AI](https://img.shields.io/badge/Google%20AI-4285F4?style=for-the-badge&logo=google&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
-</align=>
+
 # 🩺 GemDoc – Your AI Health Expert Powered by Gemini
 
 **GemDoc** is a specialized **AI-powered medical chatbot** built with **Flutter** and integrated with **Google's Gemini API**. In today’s digital era, accessible and accurate health information is essential—and GemDoc aims to deliver exactly that through a reliable, intelligent, and user-friendly experience.
