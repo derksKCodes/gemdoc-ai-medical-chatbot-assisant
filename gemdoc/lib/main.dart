@@ -8,9 +8,27 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp());
+  try {
+    await Firebase.initializeApp();
+    runApp(const MyApp());
+  } catch (e) {
+    runApp(const FirebaseErrorApp());
+  }
 }
+
+class FirebaseErrorApp extends StatelessWidget {
+  const FirebaseErrorApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: Scaffold(
+        body: Center(child: Text("Failed to initialize Firebase")),
+      ),
+    );
+  }
+}
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -88,6 +106,9 @@ class SplashScreen extends StatelessWidget {
             Image.asset('assets/images/logo.png', width: 120),
             const SizedBox(height: 20),
             const CircularProgressIndicator(color: Colors.white),
+            errorBuilder: (context, error, stackTrace) {
+              return const Icon(Icons.health_and_safety, size: 100, color: Colors.white);
+            },
           ],
         ),
       ),
