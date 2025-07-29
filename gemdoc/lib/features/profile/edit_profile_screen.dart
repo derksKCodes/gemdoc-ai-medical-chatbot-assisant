@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:gemdoc/state/auth_provider.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -13,6 +16,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _nameController;
   late TextEditingController _emailController;
+  File? _selectedImage;
+
+  Future<void> _pickImage() async {
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _selectedImage = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -31,12 +45,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   void _saveChanges() {
     if (_formKey.currentState!.validate()) {
-      // For now just show a SnackBar
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Changes saved successfully!')),
+      final authProvider = Provider.of<AuthProvider>(context, listen: false);
+      authProvider.updateUserProfile(
+        name: _nameController.text.trim(),
+        email: _emailController.text.trim(),
+        profileImage: _selectedImage
       );
 
-      // TODO: Save logic to backend/state management
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Profile updated')),
+      );
+      Navigator.pop(context);
     }
   }
 
@@ -50,10 +69,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           key: _formKey,
           child: ListView(
             children: [
-              const CircleAvatar(
-                radius: 50,
-                child: Icon(Icons.person, size: 50),
+              GestureDetector(
+                onTap: _pickImage,
+                child: CircleAvatar(
+                  radius: 40,
+                  backgroundColor: Colors.grey[300],
+                  backgroundImage:
+                      _selectedImage != null ? FileImage(_selectedImage!) : null,
+                  child: _selectedImage == null
+                      ? const Icon(Icons.camera_alt, size: 30, color: Colors.white)
+                      : null,
+                ),
               ),
+              const SizedBox(height: 8),
+              const Text("Tap to change photo"),
+
               const SizedBox(height: 20),
               TextFormField(
                 controller: _nameController,
