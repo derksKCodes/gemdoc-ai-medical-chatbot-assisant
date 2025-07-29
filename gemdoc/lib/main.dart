@@ -16,6 +16,13 @@ void main() async {
   }
 }
 
+routes: {
+  '/edit-profile': (context) => const EditProfileScreen(),
+  '/emergency-contacts': (context) => const EmergencyContactsScreen(),
+  '/change-password': (_) => const ChangePasswordScreen(),
+  '/preferences': (context) => const PreferencesScreen(),
+}
+
 class FirebaseErrorApp extends StatelessWidget {
   const FirebaseErrorApp({super.key});
 

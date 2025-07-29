@@ -10,31 +10,53 @@ class ChangePasswordScreen extends StatefulWidget {
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _currentPasswordController = TextEditingController();
   final _newPasswordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   bool _isLoading = false;
 
+  if (user.providerData.any((info) => info.providerId != 'password')) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(content: Text("This action is not supported for social logins")),
+  );
+  return;
+}
+
+
   Future<void> _changePassword() async {
-    if (!_formKey.currentState!.validate()) return;
+  if (!_formKey.currentState!.validate()) return;
 
-    setState(() => _isLoading = true);
+  final user = FirebaseAuth.instance.currentUser;
+  final cred = EmailAuthProvider.credential(
+    email: user!.email!,
+    password: _currentPasswordController.text.trim(),
+  );
 
-    try {
-      await FirebaseAuth.instance.currentUser!
-          .updatePassword(_newPasswordController.text.trim());
+  setState(() => _isLoading = true);
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Password changed successfully')),
-      );
-      Navigator.pop(context);
-    } on FirebaseAuthException catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.message ?? 'Something went wrong')),
-      );
-    } finally {
-      setState(() => _isLoading = false);
-    }
+  try {
+    // Re-authenticate
+    await user.reauthenticateWithCredential(cred);
+
+    // Update password
+    await user.updatePassword(_newPasswordController.text.trim());
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Password changed successfully')),
+    );
+    Navigator.pop(context);
+  } on FirebaseAuthException catch (e) {
+    String msg = switch (e.code) {
+      'wrong-password' => 'Current password is incorrect.',
+      'too-many-requests' => 'Too many attempts. Try again later.',
+      _ => e.message ?? 'Error updating password',
+    };
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+  } finally {
+    setState(() => _isLoading = false);
   }
+}
+
 
   @override
   void dispose() {
@@ -53,6 +75,19 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           key: _formKey,
           child: Column(
             children: [
+              TextFormField(
+                controller: _currentPasswordController,
+                obscureText: true,
+                decoration: const InputDecoration(labelText: 'Current Password'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your current password.';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+
               TextFormField(
                 controller: _newPasswordController,
                 obscureText: true,
