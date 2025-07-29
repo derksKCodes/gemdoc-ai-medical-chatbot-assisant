@@ -62,6 +62,49 @@ class ProfileScreen extends StatelessWidget {
                        Navigator.pushNamed(context, '/edit-profile');
                     },
                   ),
+
+                  // change password option
+                  SettingTile(
+                    icon: Icons.lock_outline,
+                    title: 'Change Password',
+                    onTap: () {
+                      // Implement change password
+                      Navigator.pushNamed(context, '/change-password');
+                    },
+                  ),
+
+                  // delete account option
+                  SettingTile(
+                    icon: Icons.delete_outline,
+                    title: 'Delete Account',
+                    onTap: () {
+                      // Implement delete account
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Text('Delete Account'),
+                          content: const Text('Are you sure you want to delete your account? This action cannot be undone.'),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                await authProvider.deleteAccount();
+                                Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  '/auth',
+                                  (route) => false,
+                                );
+                              },
+                              child: const Text('Delete'),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                   // Notifications toggle (static true for now)
                   SettingTile(
                     icon: Icons.notifications_outlined,
