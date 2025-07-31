@@ -1,15 +1,16 @@
 /// A model class that represents a user in the app.
 class UserModel {
-  final String uid; // Unique ID of the user (usually from Firebase Auth)
-  final String? email; // Optional email address
-  final String? name; // Optional name
-  final DateTime? createdAt; // Optional account creation date
+  final String uid; // Unique ID (e.g., from Firebase Auth)
+  final String? email; // User's email address
+  final String? name; // User's full name
+  final String? profileUrl; // Profile photo URL
+  final DateTime? createdAt; // Account creation date
 
-  /// Constructor for creating a user model instance
   UserModel({
     required this.uid,
     this.email,
     this.name,
+    this.profileUrl,
     this.createdAt,
   });
 
@@ -19,7 +20,8 @@ class UserModel {
       uid: id,
       email: data['email'],
       name: data['name'],
-      createdAt: data['createdAt']?.toDate(), // Convert Timestamp to DateTime
+      profileUrl: data['profileUrl'],
+      createdAt: data['createdAt']?.toDate(),
     );
   }
 
@@ -28,7 +30,32 @@ class UserModel {
     return {
       'email': email,
       'name': name,
+      'profileUrl': profileUrl,
       'createdAt': createdAt,
+    };
+  }
+
+  /// Create a UserModel from a JSON map (for local storage)
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      uid: json['uid'],
+      email: json['email'],
+      name: json['name'],
+      profileUrl: json['profileUrl'],
+      createdAt: json['createdAt'] != null
+          ? DateTime.tryParse(json['createdAt'])
+          : null,
+    );
+  }
+
+  /// Convert the user model to JSON map (for local storage)
+  Map<String, dynamic> toJson() {
+    return {
+      'uid': uid,
+      'email': email,
+      'name': name,
+      'profileUrl': profileUrl,
+      'createdAt': createdAt?.toIso8601String(),
     };
   }
 }
