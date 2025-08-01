@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gemdoc/core/constants/app_colors.dart';
 
 /// A reusable tile widget used in app settings screen.
 /// Displays an icon, title, optional subtitle, and an optional trailing widget or arrow icon.
