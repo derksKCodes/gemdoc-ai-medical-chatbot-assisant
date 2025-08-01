@@ -1,7 +1,7 @@
 // Importing required Firebase packages for core functionality, authentication,
 // push notifications, analytics tracking, and crash reporting.
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -11,7 +11,7 @@ import 'package:flutter/foundation.dart';
 
 class FirebaseService {
   // Firebase Auth instance for handling authentication.
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  //final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // Firebase Messaging instance for push notifications.
   final FirebaseMessaging _messaging = FirebaseMessaging.instance;
