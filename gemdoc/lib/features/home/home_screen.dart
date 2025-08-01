@@ -5,8 +5,8 @@ import 'package:gemdoc/features/chat/chat_screen.dart';
 import 'package:gemdoc/features/profile/profile_screen.dart';
 import 'package:gemdoc/features/symptom_checker/symptom_checker_screen.dart';
 import 'package:gemdoc/core/widgets/health_tips_carousel.dart';
-import 'package:gemdoc/core/widgets/home_action_button.dart';
-import 'package:gemdoc/core/widgets/home_feature_card.dart';
+import 'package:gemdoc/features/home/widgets/home_action_button.dart';
+import 'package:gemdoc/features/home/widgets/home_feature_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
