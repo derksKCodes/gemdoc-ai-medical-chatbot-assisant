@@ -35,6 +35,7 @@ class _SymptomCheckerScreenState extends State<SymptomCheckerScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Symptom Checker'),
+        backgroundColor: AppColors.primary,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
