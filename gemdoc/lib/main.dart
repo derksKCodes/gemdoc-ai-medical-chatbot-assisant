@@ -5,7 +5,8 @@ import 'package:gemdoc/features/auth/auth_screen.dart';
 import 'package:gemdoc/features/onboarding/onboarding_screen.dart';
 import 'package:gemdoc/state/auth_provider.dart';
 import 'package:provider/provider.dart';
-
+import 'package:gemdoc/core/routes/app_routes.dart';
+import 'package:gemdoc/features/home/home_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
@@ -15,14 +16,6 @@ void main() async {
     runApp(const FirebaseErrorApp());
   }
 }
-
-routes: {
-  '/edit-profile': (context) => const EditProfileScreen(),
-  '/emergency-contacts': (context) => const EmergencyContactsScreen(),
-  '/change-password': (_) => const ChangePasswordScreen(),
-  '/preferences': (context) => const PreferencesScreen(),
-}
-
 class FirebaseErrorApp extends StatelessWidget {
   const FirebaseErrorApp({super.key});
 
@@ -65,6 +58,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         themeMode: ThemeMode.system,
+        routes: AppRoutes.getRoutes(), // <- Use separated routes
         home: const AppWrapper(),
       ),
     );
@@ -113,9 +107,9 @@ class SplashScreen extends StatelessWidget {
             Image.asset('assets/images/logo.png', width: 120),
             const SizedBox(height: 20),
             const CircularProgressIndicator(color: Colors.white),
-            errorBuilder: (context, error, stackTrace) {
-              return const Icon(Icons.health_and_safety, size: 100, color: Colors.white);
-            },
+            // errorBuilder: (context, error, stackTrace) {
+            //   return const Icon(Icons.health_and_safety, size: 100, color: Colors.white);
+            // },
           ],
         ),
       ),
