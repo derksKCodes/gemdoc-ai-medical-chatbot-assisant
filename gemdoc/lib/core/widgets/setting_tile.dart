@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:gemdoc/core/constants/app_colors.dart';
 
-/// A reusable settings tile with icon, title, optional subtitle, trailing widget, and tap handler.
-/// Used in settings or profile screens for consistent UI appearance.
+/// A reusable tile widget used in app settings screen.
+/// Displays an icon, title, optional subtitle, and an optional trailing widget or arrow icon.
 class SettingTile extends StatelessWidget {
-  final IconData icon; // Leading icon
-  final String title; // Tile title text
-  final String? subtitle; // Optional subtitle text
-  final Widget? trailing; // Optional trailing widget (e.g., switch or chevron)
-  final VoidCallback? onTap; // Callback when the tile is tapped
-  final Color? iconColor; // Custom color for the icon background
-  final bool showDivider; // Controls whether a divider is shown below the tile
+  final IconData icon;
+  final String title;
+  final String? subtitle;
+  final Widget? trailing;
+  final VoidCallback? onTap;
+  final Color? iconColor;
+  final bool showDivider;
 
   const SettingTile({
     super.key,
@@ -25,77 +25,61 @@ class SettingTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final primaryColor = iconColor ?? theme.colorScheme.primary;
+
     return Column(
       children: [
         ListTile(
-          // Custom styled leading icon with background
           leading: Container(
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: iconColor?.withOpacity(0.2) ??
-                  Theme.of(context).colorScheme.primary.withOpacity(0.1),
+              // Use withAlpha(51) to replace withOpacity(0.2) — 0.2 * 255 ≈ 51
+              color: primaryColor.withAlpha(51),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(
               icon,
-              color: iconColor ?? Theme.of(context).colorScheme.primary,
+              color: primaryColor,
               size: 20,
             ),
           ),
-
-          // Title styling
           title: Text(
             title,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w500,
-                ),
+            style: theme.textTheme.bodyLarge?.copyWith(
+              fontWeight: FontWeight.w500,
+            ),
           ),
-
-          // Optional subtitle
           subtitle: subtitle != null
               ? Text(
                   subtitle!,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onSurface
-                            .withOpacity(0.6),
-                      ),
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurface.withAlpha(153), // ≈ 0.6 * 255 = 153
+                  ),
                 )
               : null,
-
-          // Optional trailing icon or custom widget
           trailing: trailing ??
               (onTap != null
                   ? Icon(
                       Icons.chevron_right,
-                      color: Theme.of(context)
-                          .colorScheme
-                          .onSurface
-                          .withOpacity(0.5),
+                      color: theme.colorScheme.onSurface.withAlpha(128), // ≈ 0.5 * 255 = 128
                     )
                   : null),
-
-          // Tap event handler
           onTap: onTap,
-
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 8,
           ),
           minVerticalPadding: 0,
         ),
-
-        // Optional divider
         if (showDivider)
           Padding(
             padding: const EdgeInsets.only(left: 72, right: 16),
             child: Divider(
               height: 1,
               thickness: 1,
-              color:
-                  Theme.of(context).dividerColor.withOpacity(0.1),
+              color: theme.dividerColor.withAlpha(25), // ≈ 0.1 * 255 = 25
             ),
           ),
       ],
