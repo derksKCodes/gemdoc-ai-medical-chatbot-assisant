@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gemdoc/core/constants/app_colors.dart';
 import 'package:gemdoc/core/widgets/custom_text_field.dart';
 import 'package:gemdoc/state/chat_provider.dart';
+import 'package:gemdoc/features/symptom_checker/widgets/symptom_chip.dart';
+
 import 'package:provider/provider.dart';
 
 class SymptomCheckerScreen extends StatefulWidget {
@@ -66,26 +68,27 @@ class _SymptomCheckerScreenState extends State<SymptomCheckerScreen> {
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 8),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: _commonSymptoms.map((symptom) {
-                final isSelected = _selectedSymptoms.contains(symptom);
-                return FilterChip(
-                  label: Text(symptom),
-                  selected: isSelected,
-                  onSelected: (selected) {
-                    setState(() {
-                      if (selected) {
-                        _selectedSymptoms.add(symptom);
-                      } else {
-                        _selectedSymptoms.remove(symptom);
-                      }
-                    });
-                  },
-                );
-              }).toList(),
-            ),
+         Wrap(
+  spacing: 8,
+  runSpacing: 8,
+  children: _commonSymptoms.map((symptom) {
+    final isSelected = _selectedSymptoms.contains(symptom);
+    return SymptomChip(
+      symptom: symptom,
+      isSelected: isSelected,
+      onTap: () {
+        setState(() {
+          if (isSelected) {
+            _selectedSymptoms.remove(symptom);
+          } else {
+            _selectedSymptoms.add(symptom);
+          }
+        });
+      },
+    );
+  }).toList(),
+),
+
             const SizedBox(height: 32),
             SizedBox(
               width: double.infinity,
