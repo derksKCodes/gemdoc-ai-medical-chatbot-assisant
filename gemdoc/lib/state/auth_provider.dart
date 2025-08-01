@@ -3,19 +3,41 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthProvider with ChangeNotifier {
-  User? _user; // Firebase user object
-  bool _isAuthenticated = false; // Auth status tracker
-  bool _shouldShowOnboarding = true; // Tracks if onboarding should be shown
 
-  // Public getters
+
+class AuthProvider with ChangeNotifier {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance; 
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  User? _user;
+  bool _isAuthenticated = false;
+  bool _shouldShowOnboarding = true;
+
+ // declare _userModel if you're using it elsewhere
+  // UserModel? _userModel;
+
   User? get user => _user;
   bool get isAuthenticated => _isAuthenticated;
   bool get shouldShowOnboarding => _shouldShowOnboarding;
 
-  // Constructor: Initialize auth state & onboarding
   AuthProvider() {
     _init();
+  }
+
+  Future<void> fetchUserProfile() async {
+    final currentUser = _firebaseAuth.currentUser;
+    if (currentUser == null) return;
+
+    try {
+      final doc = await _firestore.collection('users').doc(currentUser.uid).get();
+
+      if (doc.exists) {
+        // _userModel = UserModel.fromFirestore(doc.data()!, doc.id); // uncomment if needed
+        notifyListeners();
+      }
+    } catch (e) {
+      debugPrint('Error fetching user profile: $e');
+    }
   }
 
   // Initialize onboarding preference and auth listener
@@ -80,27 +102,43 @@ class AuthProvider with ChangeNotifier {
   }
 
   // Update user profile in memory (for UI update only)
-  void updateUserProfile({
-    required String name,
-    required String email,
-    File? profileImage,
-  }) {
-    if (_user != null) {
-      _user = _user!.copyWith(
-        displayName: name,
-        email: email,
-        photoURL: profileImage?.path ?? _user!.photoURL,
-      );
-      notifyListeners();
+  Future<void> updateUserProfile({
+  required String name,
+  required String email,
+  String? profileUrl,
+}) async {
+  final currentUser = _firebaseAuth.currentUser;
+  if (currentUser == null) return;
+
+  try {
+    await FirebaseFirestore.instance.collection('users').doc(currentUser.uid).update({
+      'name': name,
+      'email': email,
+      if (profileUrl != null) 'profileUrl': profileUrl,
+    });
+
+    // Update FirebaseAuth profile (optional)
+    await currentUser.updateDisplayName(name);
+    if (profileUrl != null) {
+      await currentUser.updatePhotoURL(profileUrl);
     }
+
+    // Sync updated user profile
+    await fetchUserProfile();
+  } catch (e) {
+    debugPrint("Failed to update profile: $e");
   }
+}
+
 
   // Delete the current user account from Firebase
   Future<void> deleteAccount() async {
     try {
       await FirebaseAuth.instance.currentUser?.delete();
     } catch (e) {
-      print('Account deletion failed: $e');
+      debugPrint('Account deletion failed: $e');
+
+      // print('Account deletion failed: $e');
       rethrow;
     }
   }
