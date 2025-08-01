@@ -19,12 +19,13 @@ class HomeActionButton extends StatelessWidget {
         height: 60,                      // Set fixed height
         decoration: BoxDecoration(
           shape: BoxShape.circle,        // Make the container circular
-          gradient: LinearGradient(      // Apply a gradient effect
-            colors: [
-              AppColors.primary,                     // Solid primary color
-              AppColors.primary.withOpacity(0.8),     // Slightly transparent shade
-            ],
-          ),
+          gradient: LinearGradient(
+              colors: [
+                AppColors.primary,
+                AppColors.primary.withValues(alpha: 204),
+              ],
+            ),
+
         ),
         child: const Icon(              // Display a chat icon inside the button
           Icons.chat,
