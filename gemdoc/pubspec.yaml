@@ -53,7 +53,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter  # Flutter's built-in testing framework
   image_picker: ^1.1.0 # or latest version
-  shared_preferences: ^2.2.2
+  # shared_preferences: ^2.2.2
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -75,8 +75,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/a_dot_burr.jpeg
-    - images/a_dot_ham.jpeg
+    - assets/images/  # Directory for image assets
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
