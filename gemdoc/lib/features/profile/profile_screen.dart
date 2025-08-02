@@ -6,9 +6,14 @@ import 'package:provider/provider.dart'; // Used for accessing providers
 import 'package:gemdoc/state/auth_provider.dart'; // Access user data and logout logic
 import 'package:gemdoc/state/theme_provider.dart'; // Access and toggle theme (dark/light)
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key}); // Stateless widget with a constant constructor
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     // Access AuthProvider to retrieve user info and logout
@@ -93,7 +98,7 @@ class ProfileScreen extends StatelessWidget {
                             TextButton(
                               onPressed: () async {
                                 await authProvider.deleteAccount();
-                                
+                                 if (!mounted) return;
                                 Navigator.pushNamedAndRemoveUntil(
                                   context,
                                   '/auth',
@@ -225,13 +230,12 @@ class ProfileScreen extends StatelessWidget {
                   // Log out the user
                   await authProvider.logout();
                   // Redirect to auth screen
-                  if (mounted) {
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      '/auth',
-                      (route) => false,
-                    );
-                  }
+                  if (!mounted) return; // <-- Safe context usage
+                  Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  '/auth',
+                  (route) => false,
+                );
                 },
                 child: const Text('Log Out'),
               ),
