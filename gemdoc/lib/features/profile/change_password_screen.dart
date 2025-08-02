@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gemdoc/core/constants/app_colors.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
-  const ChangePasswordScreen({Key? key}) : super(key: key);
+  const ChangePasswordScreen({super.key});
 
   @override
   State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
@@ -16,30 +16,31 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final _confirmPasswordController = TextEditingController();
   bool _isLoading = false;
 
-  if (user.providerData.any((info) => info.providerId != 'password')) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(content: Text("This action is not supported for social logins")),
-  );
-  return;
-}
 
-
-  Future<void> _changePassword() async {
+Future<void> _changePassword() async {
   if (!_formKey.currentState!.validate()) return;
 
   final user = FirebaseAuth.instance.currentUser;
+
+  if (user == null) return;
+
+  // Prevent social login users from changing password
+  if (user.providerData.any((info) => info.providerId != 'password')) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("This action is not supported for social logins")),
+    );
+    return;
+  }
+
   final cred = EmailAuthProvider.credential(
-    email: user!.email!,
+    email: user.email!,
     password: _currentPasswordController.text.trim(),
   );
 
   setState(() => _isLoading = true);
 
   try {
-    // Re-authenticate
     await user.reauthenticateWithCredential(cred);
-
-    // Update password
     await user.updatePassword(_newPasswordController.text.trim());
 
     ScaffoldMessenger.of(context).showSnackBar(
