@@ -41,13 +41,20 @@ Future<void> _changePassword() async {
 
   try {
     await user.reauthenticateWithCredential(cred);
+
+    if (!mounted) return;
+    
     await user.updatePassword(_newPasswordController.text.trim());
+
+    if (!mounted) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Password changed successfully')),
     );
     Navigator.pop(context);
   } on FirebaseAuthException catch (e) {
+
+    if (!mounted) return;
     String msg = switch (e.code) {
       'wrong-password' => 'Current password is incorrect.',
       'too-many-requests' => 'Too many attempts. Try again later.',
@@ -55,7 +62,7 @@ Future<void> _changePassword() async {
     };
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
   } finally {
-    setState(() => _isLoading = false);
+    if (!mounted) setState(() => _isLoading = false);
   }
 }
 
