@@ -48,6 +48,8 @@ dependencies:
   smooth_page_indicator: ^1.1.0  # Customizable page indicators for onboarding/carousels
   flutter_dotenv: ^5.1.0  # Load environment variables from a `.env` file
   intl: ^0.18.1  # Internationalization and localization utilities
+  firebase_storage: ^11.5.6
+
 
 dev_dependencies:
   flutter_test:
@@ -102,3 +104,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+firebase_storage: ^11.5.6

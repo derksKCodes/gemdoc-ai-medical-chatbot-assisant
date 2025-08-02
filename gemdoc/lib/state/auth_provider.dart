@@ -2,9 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-
-
+import 'package:firebase_storage/firebase_storage.dart';
+import 'dart:io';
 class AuthProvider with ChangeNotifier {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance; 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -105,30 +104,68 @@ class AuthProvider with ChangeNotifier {
   Future<void> updateUserProfile({
   required String name,
   required String email,
-  String? profileUrl,
+  File? profileImage,
 }) async {
   final currentUser = _firebaseAuth.currentUser;
   if (currentUser == null) return;
 
+  String? profileUrl;
+
   try {
-    await FirebaseFirestore.instance.collection('users').doc(currentUser.uid).update({
+    if (profileImage != null) {
+      final ref = FirebaseStorage.instance
+          .ref()
+          .child('profile_images')
+          .child('${currentUser.uid}.jpg');
+
+      await ref.putFile(profileImage);
+      profileUrl = await ref.getDownloadURL();
+    }
+
+    await _firestore.collection('users').doc(currentUser.uid).update({
       'name': name,
       'email': email,
       if (profileUrl != null) 'profileUrl': profileUrl,
     });
 
-    // Update FirebaseAuth profile (optional)
     await currentUser.updateDisplayName(name);
     if (profileUrl != null) {
       await currentUser.updatePhotoURL(profileUrl);
     }
 
-    // Sync updated user profile
     await fetchUserProfile();
   } catch (e) {
     debugPrint("Failed to update profile: $e");
   }
 }
+
+//   Future<void> updateUserProfile({
+//   required String name,
+//   required String email,
+//   String? profileUrl,
+// }) async {
+//   final currentUser = _firebaseAuth.currentUser;
+//   if (currentUser == null) return;
+
+//   try {
+//     await FirebaseFirestore.instance.collection('users').doc(currentUser.uid).update({
+//       'name': name,
+//       'email': email,
+//       if (profileUrl != null) 'profileUrl': profileUrl,
+//     });
+
+//     // Update FirebaseAuth profile (optional)
+//     await currentUser.updateDisplayName(name);
+//     if (profileUrl != null) {
+//       await currentUser.updatePhotoURL(profileUrl);
+//     }
+
+//     // Sync updated user profile
+//     await fetchUserProfile();
+//   } catch (e) {
+//     debugPrint("Failed to update profile: $e");
+//   }
+// }
 
 
   // Delete the current user account from Firebase
