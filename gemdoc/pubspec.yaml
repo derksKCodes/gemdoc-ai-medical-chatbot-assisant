@@ -62,6 +62,12 @@ dev_dependencies:
     sdk: flutter  # Flutter's built-in testing framework
   flutter_lints: ^3.0.1
   image_picker: ^1.1.0 # or latest version
+  flutter_launcher_icons: ^0.14.4
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/icons/appLogo.png
   # shared_preferences: ^2.2.2
 
   # The "flutter_lints" package below contains a set of recommended lints to

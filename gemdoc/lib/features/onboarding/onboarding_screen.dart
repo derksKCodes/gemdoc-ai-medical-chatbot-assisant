@@ -16,7 +16,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final List<OnboardingPage> _pages = [
     OnboardingPage(
-      image: 'assets/illustrations/doctor.png',
+      image: 'assets/illustrations/doc.png',
       title: 'Your AI Health Companion',
       description: 'Get reliable health information and guidance anytime, anywhere.',
     ),
