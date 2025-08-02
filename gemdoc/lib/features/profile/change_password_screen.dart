@@ -43,7 +43,7 @@ Future<void> _changePassword() async {
     await user.reauthenticateWithCredential(cred);
 
     if (!mounted) return;
-    
+
     await user.updatePassword(_newPasswordController.text.trim());
 
     if (!mounted) return;
@@ -77,7 +77,10 @@ Future<void> _changePassword() async {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Change Password')),
+      appBar: AppBar(
+        title: const Text('Change Password'),
+        backgroundColor: AppColors.primary,
+        ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -123,6 +126,9 @@ Future<void> _changePassword() async {
               ),
               const SizedBox(height: 24),
               ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primary,
+                ),
                 icon: const Icon(Icons.lock_reset),
                 label: _isLoading
                     ? const SizedBox(
