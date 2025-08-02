@@ -8,14 +8,24 @@ import 'package:gemdoc/state/auth_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:gemdoc/core/routes/app_routes.dart';
 import 'package:gemdoc/features/home/home_screen.dart';
+import 'package:gemdoc/state/theme_provider.dart';
+import 'package:gemdoc/state/chat_provider.dart';
+import 'package:gemdoc/core/services/gemini_service.dart'; 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(); // load .env file
   try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    runApp(const MyApp());
+
+     final geminiService = GeminiService(
+    apiKey: dotenv.env['GEMINI_API_KEY'] ?? '', // load API key
+  );
+
+   runApp(MyApp(geminiService: geminiService));
     debugPrint('Firebase initialized successfully');
   } catch (e) {
     runApp(const FirebaseErrorApp());
@@ -38,14 +48,16 @@ class FirebaseErrorApp extends StatelessWidget {
 
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final GeminiService geminiService;
+  const MyApp({super.key,required this.geminiService});
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
-        // Add other providers as needed
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => ChatProvider(geminiService: geminiService)),
       ],
       child: MaterialApp(
         title: 'GemDoc',

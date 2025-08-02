@@ -7,6 +7,7 @@ import 'package:gemdoc/features/symptom_checker/symptom_checker_screen.dart';
 import 'package:gemdoc/core/widgets/health_tips_carousel.dart';
 import 'package:gemdoc/features/home/widgets/home_action_button.dart';
 import 'package:gemdoc/features/home/widgets/home_feature_card.dart';
+import 'package:gemdoc/features/profile/emergency_contacts_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -160,7 +161,8 @@ class HomeContent extends StatelessWidget {
                 title: const Text('Nearest Hospital'),
                 onTap: () {
                   Navigator.pop(context);
-                  // Implement hospital finder
+                  // Implement hospital finder: HealthTipsCarousel
+                  
                 },
               ),
               ListTile(
@@ -168,7 +170,12 @@ class HomeContent extends StatelessWidget {
                 title: const Text('Emergency Call'),
                 onTap: () {
                   Navigator.pop(context);
-                  // Implement emergency call
+                  // Implement emergency call: EmergencyContactsScreen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const EmergencyContactsScreen()),
+                  );
+
                 },
               ),
             ],
@@ -182,5 +189,9 @@ class HomeContent extends StatelessWidget {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('This feature is coming soon!')),
     );
+     Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HealthTipsCarousel()),
+                  );
   }
 }
