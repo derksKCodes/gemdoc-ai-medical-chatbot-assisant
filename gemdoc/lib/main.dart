@@ -12,8 +12,10 @@ void main() async {
   try {
     await Firebase.initializeApp();
     runApp(const MyApp());
+    debugPrint('Firebase initialized successfully');
   } catch (e) {
     runApp(const FirebaseErrorApp());
+    debugPrint('Firebase initialization failed: $e');
   }
 }
 class FirebaseErrorApp extends StatelessWidget {

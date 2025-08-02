@@ -1,6 +1,6 @@
 // features/auth/auth_screen.dart
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:gemdoc/core/constants/app_colors.dart';
 import 'package:gemdoc/core/widgets/custom_text_field.dart';
 import 'package:provider/provider.dart';
