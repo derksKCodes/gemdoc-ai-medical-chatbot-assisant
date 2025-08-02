@@ -30,7 +30,8 @@ class ProfileScreen extends StatelessWidget {
               backgroundColor: Theme.of(context).colorScheme.primary,
               child: Text(
                 // Use first letter of user’s name or fallback to 'U'
-                authProvider.user?.name?.substring(0, 1) ?? 'U',
+                authProvider.user?.displayName?.substring(0, 1) ?? 'U',
+
                 style: const TextStyle(fontSize: 40, color: Colors.white),
               ),
             ),
@@ -38,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
 
             // Display user's full name or default
             Text(
-              authProvider.user?.name ?? 'User',
+              authProvider.user?.displayName ?? 'User',
               style: Theme.of(context).textTheme.titleLarge,
             ),
             // Display user's email
@@ -92,6 +93,7 @@ class ProfileScreen extends StatelessWidget {
                             TextButton(
                               onPressed: () async {
                                 await authProvider.deleteAccount();
+                                
                                 Navigator.pushNamedAndRemoveUntil(
                                   context,
                                   '/auth',
