@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart'; // <- this line is required
 import 'package:gemdoc/core/constants/app_colors.dart';
 import 'package:gemdoc/features/auth/auth_screen.dart';
 import 'package:gemdoc/features/onboarding/onboarding_screen.dart';
@@ -7,10 +8,13 @@ import 'package:gemdoc/state/auth_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:gemdoc/core/routes/app_routes.dart';
 import 'package:gemdoc/features/home/home_screen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     runApp(const MyApp());
     debugPrint('Firebase initialized successfully');
   } catch (e) {
@@ -18,6 +22,7 @@ void main() async {
     debugPrint('Firebase initialization failed: $e');
   }
 }
+
 class FirebaseErrorApp extends StatelessWidget {
   const FirebaseErrorApp({super.key});
 
